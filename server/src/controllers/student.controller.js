@@ -6,10 +6,12 @@ const registerStudent = async (req, res) => {
   } catch (error) {
     console.log("Error in register student controller :", error);
     error.code === 11000
-      ? res.send(
-          "Registration Error: Email or contact information is already registered."
-        )
-      : res.send(error);
+      ? res.status(400).json({
+          error: "Email or contact information is already registered.",
+        })
+      : res.status(400).json({
+          error: "something went wrong",
+        });
   }
 };
 
