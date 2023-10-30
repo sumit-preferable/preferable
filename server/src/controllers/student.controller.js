@@ -1,11 +1,15 @@
 const studentModel = require("../models/student.schema");
 const registerStudent = async (req, res) => {
   try {
-    const isRegister = await studentModel.create(req.body); 
-        res.send(isRegister);
+    const isRegister = await studentModel.create(req.body);
+    res.send(isRegister);
   } catch (error) {
     console.log("Error in register student controller :", error);
-    res.send(error);
+    error.code === 11000
+      ? res.send(
+          "Registration Error: Email or contact information is already registered."
+        )
+      : res.send(error);
   }
 };
 
@@ -18,4 +22,4 @@ const getStudent = async (req, res) => {
     res.send(error);
   }
 };
-module.exports = { registerStudent , getStudent };
+module.exports = { registerStudent, getStudent };
