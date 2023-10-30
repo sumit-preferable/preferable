@@ -5,7 +5,7 @@ const validateStudentCreation = [
   check("email").isEmail().withMessage("Invalid email address"),
   check("contact").isMobilePhone().withMessage("Invalid contact number"),
   check("gender")
-    .isIn(["Male", "Female", "Other"])
+    .isIn(["male", "female", "other"])
     .withMessage("Invalid gender"),
   check("qualification")
     .not()
@@ -25,6 +25,7 @@ const validateStudentCreation = [
   check("course").not().isEmpty().withMessage("Course is required"),
   check("careerGoal").not().isEmpty().withMessage("Career Goal is required"),
   async (req, res, next) => {
+    console.log('body :' , req.body)
     const errors = validationResult(req);
     return !errors.isEmpty()
       ? res.status(422).json({ errors: errors.array() })

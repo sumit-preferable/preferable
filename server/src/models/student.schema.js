@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const studentSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
-  email: { type: String, unique: true }, 
+  email: { type: String, unique: true },
   contact: { type: String, unique: true },
   gender: String,
   qualification: String,
